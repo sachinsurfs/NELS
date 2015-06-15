@@ -45,6 +45,8 @@ for dirname, dirnames, filenames in os.walk(read_dir):
         merge_str = "java -cp /usr/share/java/weka/weka.jar weka.core.Instances merge "+DATASET_DIR+"/arff"+str(i)+".arff "+DATASET_DIR+"/nominal.arff > "+DATASET_DIR+"/merge_file.arff"
         os.system(merge_str)
         os.system("cat "+DATASET_DIR+"/merge_file.arff > "+DATASET_DIR+"/arff"+str(i)+".arff")
+        if(os.stat(DATASET_DIR+"/arff"+str(i)+".arff").st_size == 0):
+            continue
         if( i == 1 ):
             print(i)
             pass
